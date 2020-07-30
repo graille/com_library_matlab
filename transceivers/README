@@ -11,8 +11,8 @@ figure;
 semilogy(EbN0dBs, ber, 'o-', 'DisplayName', 'Simulation'); hold on;
 
 % Plot theorical BPSK curve to compare
-bep = qfunc(sqrt(2*10.^(EbNoDBs/10)));
-semilogy(EbNoDBs, bep, 'DisplayName', 'Theorical BPSK');
+bep = qfunc(sqrt(2*10.^(EbN0dBs/10)));
+semilogy(EbN0dBs, bep, 'DisplayName', 'Theorical BPSK');
 legend
 grid on;
 ```

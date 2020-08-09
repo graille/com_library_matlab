@@ -22,7 +22,7 @@ Example for the simple_transceiver:
 ```matlab
 % Without PM modulation
 figure;
-tr = @(e) simple_transceiver(e, false, 0);
+tr = @(e) simple_pm_transceiver(e, false, 0);
 [ber, EbN0dBs] = ber_evaluator(tr, 0:8, 1000, 12);
 x = 0:0.1:9;
 bep = qfunc(sqrt(2*10.^(x/10)));
@@ -40,7 +40,7 @@ bep = qfunc(sqrt(2*10.^(x/10)));
 semilogy(x, bep, 'DisplayName', 'BPSK theory'); hold on;
 
 for h = [0.001 0.01 0.1 0.3 1 1.2 2]
-  tr = @(e) simple_transceiver(e, true, h);
+  tr = @(e) simple_pm_transceiver(e, true, h);
   [ber, EbN0dBs] = ber_evaluator(tr, 0:8, 2000, 12);
   semilogy(EbN0dBs, ber, '-o', 'DisplayName', sprintf('BPSK practice (h = %4.3f)', h));
 end

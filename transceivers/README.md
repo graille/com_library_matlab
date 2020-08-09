@@ -20,6 +20,7 @@ grid on;
 Example for the simple_transceiver:
 
 ```matlab
+% Without PM modulation
 figure;
 tr = @(e) simple_transceiver(e, false, 0);
 [ber, EbN0dBs] = ber_evaluator(tr, 0:8, 1000, 12);
@@ -32,6 +33,7 @@ grid;
 xlabel('Eb/N0 (dB)');
 ylabel('BER');
 
+% With PM modulation
 figure;
 x = 0:0.1:9;
 bep = qfunc(sqrt(2*10.^(x/10)));

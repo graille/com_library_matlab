@@ -1,4 +1,4 @@
-function [b_emitted, b_received] = simple_transceiver(EbN0dB, activate_PM, h)
+function [b_emitted, b_received] = simple_pm_transceiver(EbN0dB, activate_PM, h)
   %{
     EbN0dB: Value of Eb/N0 (in dB)
     activate_PM: boolean used to activate the PM modulation

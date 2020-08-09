@@ -1,4 +1,5 @@
 To test a transceiver, you can use ber_evaluator library
+(If you don't own the parallel pool library, just replace the "parfor" of ber_evaluator.m by a simple "for" loop)
 
 Example using 4 parallel workers:
 

@@ -14,8 +14,8 @@ function [b_emitted, b_received] = simple_pm_transceiver(EbN0dB, activate_PM, h)
   %% Emitter
   nF = Fs / Rb; % Number of samples per symbol
   b_emitted = round(rand(1, N)); % Create bits
-  c = pskmod(b_emitted, 2); % BPSK modulation
   
+  c = pskmod(b_emitted, 2); % BPSK modulation
   d = reshape(repmat(c, nF, 1), 1, nF * length(c)); % NRZ shapping
   t = (0:length(d) - 1) * 1/Fs;
 
@@ -23,12 +23,12 @@ function [b_emitted, b_received] = simple_pm_transceiver(EbN0dB, activate_PM, h)
   
   % Phase modulation
   if activate_PM
-    ye = exp(1i * h .* real(ye));
+    ye = exp(1i * h .* real(ye)); % Sub-carrier is encoded into carrier phase
   end
   
   %% Add AWGN
   if activate_PM
-    Pn = Fs/Rb * var(c) / 10^(EbN0dB / 10) * 2 * besselj(1, h)^2;
+    Pn = Fs/Rb * var(c) / 10^(EbN0dB / 10) * 2 * besselj(1, h)^2; % The factor 2 * besselj(1, h)^2 can be found mathematically when studiying y_e PSD
   else
     Pn = Fs/Rb * var(c) / 10^(EbN0dB / 10);
   end
@@ -37,7 +37,7 @@ function [b_emitted, b_received] = simple_pm_transceiver(EbN0dB, activate_PM, h)
   
   %% Receiver
   if activate_PM
-    y = angle(y); % Recover angle
+    y = angle(y); % Recover sub-carrier which is encoded in carrier phase
   end
   
   y = y .* exp(-2 * 1i * pi * Fsc .* t);
